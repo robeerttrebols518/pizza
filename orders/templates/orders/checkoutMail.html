@@ -1,0 +1,66 @@
+{% load static %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+<h3>Greetings !!,</h3>
+<div style="margin-left: 2vw;">
+    <h4>
+        Welcome to Pinochio's Pizza & subs {{ first_name }},
+        <br>
+        Your Order is Placed Successfully as details below
+        <br>
+        <a href="{{ absolute_uri }}">Click here to check order status</a>
+    </h4>
+    <div>
+        {% for item in cartItems %}
+        {% if item is not null %}
+        <div style="border: 1px solid;padding: 25px;box-shadow: 5px 20px grey;">
+            <div>
+                <span> {{ item.prodname }}</span>
+                <span>{{ item.catname }}</span>
+                <span>{{ item.size }}</span>
+                <div>
+                    {% if item.topping %}
+                    Toppings:
+
+                    {% for top in item.topping %}
+                    {{ top }},
+                    {% endfor %}
+
+                    {% endif %}
+
+                </div>
+                <div>
+                    {% if item.extkeys %}
+                    Extras:
+
+                    {% for extkey in item.extkeys %}
+
+                    {% for ext in extkey %}
+                    {{ ext }},
+                    {% endfor %}
+
+                    {% endfor %}
+
+                    {% endif %}
+
+                </div>
+                <span style="float: right;">
+                    $ {{ item.itemcost }}
+                </span>
+
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <h3 style="float: right;">
+            Total.. $ {{ total_amount }}
+        </h3>
+
+    </div>
+</div>
+<br><br>
+<h4>
+    Thanks & Regards,<br>
+    Harish Ahuja(Full Stack Developer)
+</h4>
